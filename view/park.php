@@ -6,7 +6,7 @@
       <label for="regNr">RegNr:</label>
       <input type="text" id="regNr" name="regNr" required>
       <label for="vtype">Vehicletype:</label>
-      <input type="radio" id="vtype" name="vtype" value="Car">Car
+      <input type="radio" id="vtype" name="vtype" value="Car" required>Car
       <input type="radio" id="vtype" name="vtype" value="MC">MC
       <br>
       <button>Submit</button>
