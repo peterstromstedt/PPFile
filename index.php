@@ -1,5 +1,7 @@
 <?php
+
 require('classes/parkinglot.php');
+require('functions.php');
 
 
 $regNr = filter_input(INPUT_POST,'regNr',FILTER_UNSAFE_RAW);
@@ -7,6 +9,9 @@ $action = filter_input(INPUT_POST,'action',FILTER_UNSAFE_RAW);
 $parking = new Parkinglot();
 
 include('view/header.html');
+
+session_start();
+?> <h2><?="welcome " . $_SESSION['user'];?></h2><?php
 
 // Selects input form
 if(isset($_POST['Park'])){
@@ -24,6 +29,27 @@ if(isset($_POST['Find'])){
 if(isset($_POST['Print'])){
    include('view/print.php');
 }
+
+
+/////////////////////////////////////////////////////////
+// (A) START SESSION
+// session_start();
+
+// (B) LOGOUT REQUEST
+if (isset($_POST["Logout"])) {
+  session_destroy();
+  unset($_SESSION);
+}
+
+// (C) REDIRECT TO LOGIN PAGE IF NOT SIGNED IN
+if (!isset($_SESSION["user"])) {
+  header("Location: view/loginform.php");
+  exit();
+}
+//////////////////////////////////////////////////////////
+
+
+
 // Handles input from hidden formaction above
 switch($action){
    
@@ -52,28 +78,11 @@ switch($action){
    case 'collect':
          $parking->collectVehicle($_POST['regNr']);
          writeToParkingFile($parking);
-         break;
+         break; 
 }
-
-
 
 include('view/footer.html');
 
 
-function writeToParkingFile($parking){
-   usort($parking->parkedVehicles, [Parkinglot::class, "compareObj"]);
-   $parking = serialize($parking);
-   $file = fopen("parking.csv", "w");
-   fwrite($file, $parking);
-   fclose($file);
-}
-
-function testInput($data) {
-
-   $data = trim($data);
-   $data = stripslashes($data);
-   $data = htmlspecialchars($data);
-   return $data;
-}
 
 ?>

@@ -55,7 +55,6 @@ class Parkinglot{
    }
 
    public function getEmptyLots(){
-      //$emptylots = array(1,2,3,4,5,6,7,8,9,10);
       $emptylots = array();
       for($i=1;$i<=$this->capacity;$i++){
          $emptylots[] += $i;
@@ -74,7 +73,6 @@ class Parkinglot{
       $file3 = fread($file2, 5000);
       fclose($file2);
       $newfilessss = unserialize($file3);
-      //echo '<pre>'; var_dump($newfilessss); echo '</pre>';
       return $newfilessss;
    }
 

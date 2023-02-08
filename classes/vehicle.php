@@ -25,9 +25,7 @@ class Vehicle{
       return $this->vType;
    }
    public function getStartTime(){
-      $time = $this->startTime;
-      $time = date('Y-m-d H:i',$time);
-      return $time;
+      return date('Y-m-d H:i',$this->startTime);
    }
 
 
