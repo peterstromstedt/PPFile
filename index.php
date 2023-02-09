@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require('classes/parkinglot.php');
 require('functions.php');
@@ -16,8 +17,6 @@ $parking = new Parkinglot();
 
 include('view/header.html');
 
-// so we can access who is logged in
-session_start();
 ?> <h2><?="welcome " . $_SESSION['user'];?></h2><?php
 
 // Selects input form
@@ -36,7 +35,6 @@ if(isset($_POST['Find'])){
 if(isset($_POST['Print'])){
    include('view/print.php');
 }
-
 if (isset($_POST["Logout"])) {
    session_destroy();
    unset($_SESSION);

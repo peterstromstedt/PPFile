@@ -14,7 +14,7 @@ if(isset($_POST['user']) && isset($_POST['password']) === isset($_POST['password
   $user = testInput($_POST["user"]);
   $pw = testInput($_POST['password']);
 
-  password_hash($pw, PASSWORD_DEFAULT);
+  //password_hash($pw, PASSWORD_DEFAULT);
 
   $userArr = array($user,$pw);
    
@@ -26,3 +26,7 @@ if(isset($_POST['user']) && isset($_POST['password']) === isset($_POST['password
 
   header('location: index.php');
 }
+
+?>
+
+   

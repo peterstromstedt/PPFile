@@ -20,11 +20,12 @@
          <label for="password">Password</label>         
          <input type="password" name="password" required>
          <label for="password_confirmation">Repeat password</label>
-         <input type="password" name="password_confirmation">
+         <input type="password" name="password_confirmation" required>
          <input type="submit" value="Sign Up">
          </form>
       </fieldset>
    </main>
    <a href="loginform.php">back to login</a>
+ 
 </body>
 </html>

@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+
 <?php
 session_start();
 
@@ -5,8 +7,8 @@ require('functions.php');
 if (isset($_POST["user"]) && !isset($_SESSION["user"])) {
   
    $user = testInput($_POST["user"]);
-   $pw = testInput($_POST['password']);
-   
+   $pw = testInput($_POST['password']); 
+
    $userArr = array($user,$pw);
    
    $csvhandle = fopen('login.csv', 'r');
@@ -22,12 +24,16 @@ if (isset($_POST["user"]) && !isset($_SESSION["user"])) {
             header('location:index.php');
             break;
          }
-      }
-      else
-      {
-         fclose($csvhandle);        
-         header('location:index.php');         
-      }
-   } 
+      }      
+   }
+
+   fclose($csvhandle);  
+   session_destroy();
+   unset($_SESSION);      
+   ?>
+   <h2>login failed!</h2>
+   <button><a href="view/loginform.php">return to login</a></button>
+   <button><a href="view/signupform.php">go to signup</a></button>
+   <?php
 }
 
