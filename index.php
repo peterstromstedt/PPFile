@@ -3,6 +3,12 @@
 require('classes/parkinglot.php');
 require('functions.php');
 
+// if user is not logged in
+if (!isset($_SESSION["user"])) {
+   header("Location: view/loginform.php");
+   exit();
+ }
+
 
 $regNr = filter_input(INPUT_POST,'regNr',FILTER_UNSAFE_RAW);
 $action = filter_input(INPUT_POST,'action',FILTER_UNSAFE_RAW);
@@ -10,6 +16,7 @@ $parking = new Parkinglot();
 
 include('view/header.html');
 
+// so we can access who is logged in
 session_start();
 ?> <h2><?="welcome " . $_SESSION['user'];?></h2><?php
 
@@ -30,24 +37,10 @@ if(isset($_POST['Print'])){
    include('view/print.php');
 }
 
-
-/////////////////////////////////////////////////////////
-// (A) START SESSION
-// session_start();
-
-// (B) LOGOUT REQUEST
 if (isset($_POST["Logout"])) {
-  session_destroy();
-  unset($_SESSION);
-}
-
-// (C) REDIRECT TO LOGIN PAGE IF NOT SIGNED IN
-if (!isset($_SESSION["user"])) {
-  header("Location: view/loginform.php");
-  exit();
-}
-//////////////////////////////////////////////////////////
-
+   session_destroy();
+   unset($_SESSION);
+ }
 
 
 // Handles input from hidden formaction above

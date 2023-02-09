@@ -10,7 +10,7 @@
 
 <body>
    <header>
-      <h1>Create an account</h1>
+      <h1>Create an account for Prague Parking</h1>
    </header>
    <main>
       <fieldset>        
@@ -22,7 +22,7 @@
          <label for="password_confirmation">Repeat password</label>
          <input type="password" name="password_confirmation">
          <input type="submit" value="Sign Up">
-    </form>
+         </form>
       </fieldset>
    </main>
    <a href="loginform.php">back to login</a>
