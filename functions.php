@@ -14,4 +14,3 @@ function testInput($data) {
    $data = htmlspecialchars($data);
    return $data;
 }
-
