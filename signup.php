@@ -27,7 +27,7 @@ if(isset($_POST['user']))
         <button><a href="view/loginform.php">return to login</a></button>
         <button><a href="view/signupform.php">return to signup</a></button> 
         <?php
-        fclose('login.csv');
+        fclose($csvhandle);
         break;
       }
     }
